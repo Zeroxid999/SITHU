@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message for Akkiyoh</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .message {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #d81b60;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            animation: colorChange 8s infinite, pulse 2s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: #d81b60; }
+            25% { color: #e91e63; }
+            50% { color: #f06292; }
+            75% { color: #ec407a; }
+            100% { color: #d81b60; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            margin: 30px auto;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: #ff3b6c;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .falling-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .falling-heart {
+            position: absolute;
+            color: rgba(236, 64, 122, 0.5);
+            font-size: 20px;
+            animation: falling linear infinite;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .message {
+                font-size: 2rem;
+            }
+            .heart {
+                width: 80px;
+                height: 72px;
+            }
+            .heart:before,
+            .heart:after {
+                width: 40px;
+                height: 64px;
+                left: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                font-size: 1.5rem;
+            }
+            .heart {
+                width: 60px;
+                height: 54px;
+            }
+            .heart:before,
+            .heart:after {
+                width: 30px;
+                height: 48px;
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">I LOVE YOU Akkiyoh</div>
+        <div class="heart"></div>
+        <div class="falling-hearts" id="fallingHeartsContainer"></div>
+    </div>
+
+    <script>
+        // Create falling hearts
+        function createFallingHearts() {
+            const container = document.getElementById('fallingHeartsContainer');
+            const windowWidth = window.innerWidth;
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('falling-heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * windowWidth + 'px';
+                heart.style.animationDuration = (Math.random() * 15 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                container.appendChild(heart);
+            }
+        }
+
+        window.addEventListener('load', createFallingHearts);
+        window.addEventListener('resize', function() {
+            const container = document.getElementById('fallingHeartsContainer');
+            container.innerHTML = '';
+            createFallingHearts();
+        });
+    </script>
+</body>
+</html>
+
